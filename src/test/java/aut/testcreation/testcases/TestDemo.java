@@ -16,9 +16,33 @@ public class TestDemo extends SeleniumTestBase {
     @Test
     @Description("Test creado para bootcamp 9 tsoft")
     public void testDemo() throws InterruptedException {
-        driver = DriverFactory.getDriver();
-        driver.navigate().to(BASE_URL_AUT);
-        Thread.sleep(5000);
+        //inicializacion
+        driver = DriverFactory.getDriver(); //crea el browser de prueba
+
+
+        //open web page
+        driver.get(BASE_URL_AUT); //google.com
+        String nombreUrlActual = driver.getCurrentUrl(); //tomar url actual
+        String tituloWeb = driver.getTitle();//tomar titulo de la pagina
+        System.out.println("Me encuentro en : "+nombreUrlActual+" y su titulo es : "+tituloWeb);
+        Thread.sleep(3000);
+        driver.navigate().to("https://selenium.dev");
+        Thread.sleep(3000);
+        nombreUrlActual = driver.getCurrentUrl(); //tomar url actual
+        tituloWeb = driver.getTitle();//tomar titulo de la pagina
+        System.out.println("Me encuentro en : "+nombreUrlActual+" y su titulo es : "+tituloWeb);
+
+        //Browser :: Back - Forward - Refresh
+        driver.navigate().back();
+        nombreUrlActual = driver.getCurrentUrl(); //tomar url actual
+        tituloWeb = driver.getTitle();//tomar titulo de la pagina
+        System.out.println("Me encuentro en : "+nombreUrlActual+" y su titulo es : "+tituloWeb);
+        driver.navigate().forward();
+        nombreUrlActual = driver.getCurrentUrl(); //tomar url actual
+        tituloWeb = driver.getTitle();//tomar titulo de la pagina
+        System.out.println("Me encuentro en : "+nombreUrlActual+" y su titulo es : "+tituloWeb);
+        driver.navigate().refresh();
+        
         Assertions.assertTrue(true);
     }
 }
