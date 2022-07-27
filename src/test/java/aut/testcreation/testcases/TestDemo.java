@@ -37,10 +37,12 @@ public class TestDemo extends SeleniumTestBase {
         nombreUrlActual = driver.getCurrentUrl(); //tomar url actual
         tituloWeb = driver.getTitle();//tomar titulo de la pagina
         System.out.println("Me encuentro en : "+nombreUrlActual+" y su titulo es : "+tituloWeb);
+        Thread.sleep(3000);
         driver.navigate().forward();
         nombreUrlActual = driver.getCurrentUrl(); //tomar url actual
         tituloWeb = driver.getTitle();//tomar titulo de la pagina
         System.out.println("Me encuentro en : "+nombreUrlActual+" y su titulo es : "+tituloWeb);
+        Thread.sleep(3000);
         driver.navigate().refresh();
         
         Assertions.assertTrue(true);

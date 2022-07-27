@@ -26,7 +26,11 @@ public class DriverFactory {
         }else if(browser.equals("firefox")){
             WebDriverManager.firefoxdriver().setup();
             hiloLocal.set(new FirefoxDriver());
-        }else {
+        }else if (browser.equals("chrome")){
+            WebDriverManager.chromedriver().setup();
+            hiloLocal.set(new ChromeDriver());
+        }
+        else {
             System.out.println("Please pass the correct browser value: "+browser);
         }
         getDriver().manage().deleteAllCookies();
