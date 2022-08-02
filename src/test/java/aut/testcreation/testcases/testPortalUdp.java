@@ -33,7 +33,7 @@ public class testPortalUdp extends SeleniumTestBase {
         webElementbtnSend.click();
         WebElement webElementstringError = driver.findElement(stringError);
         String text = webElementstringError.getText();
-        Assertions.assertEquals("User information incorrect. Cannot send e-mail with new password.",text);
+        Assertions.assertEquals("Datos de usuario no correctos.No se puede enviar correo electrónico con clave de acceso nueva.",text);
         Assertions.assertTrue(true);
     }
 }
