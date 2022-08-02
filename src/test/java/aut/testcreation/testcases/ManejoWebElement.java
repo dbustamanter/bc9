@@ -1,6 +1,5 @@
 package aut.testcreation.testcases;
 
-import aut.engine.selenium.SeleniumTestBase;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,7 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.time.Duration;
 import java.util.List;
 
-public class ManejoWebElement extends SeleniumTestBase {
+public class ManejoWebElement {
 
     WebDriver driver;
     By dropdownLocator = By.id("dropdown");
