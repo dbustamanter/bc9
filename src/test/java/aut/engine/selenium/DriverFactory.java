@@ -39,10 +39,6 @@ public class DriverFactory {
                 break;
         }
         getDriver().manage().deleteAllCookies();
-        /*getDriver().manage().window().minimize();
-        getDriver().manage().window().maximize();
-        getDriver().manage().window().setSize(new Dimension(800,600));
-        getDriver().manage().window().fullscreen();*/
         return getDriver();
     }
 
