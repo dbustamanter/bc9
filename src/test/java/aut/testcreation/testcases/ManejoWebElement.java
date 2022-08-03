@@ -9,10 +9,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ManejoWebElement {
 
@@ -71,6 +72,13 @@ public class ManejoWebElement {
         WebElement checkbox1 = driver.findElement(check1);
         WebElement checkbox2 = driver.findElement(check2);
 
+        Wait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
+                                        .withTimeout(Duration.ofMillis(5000))
+                                        .pollingEvery(Duration.ofMillis(100))
+                                        .ignoring(NoSuchElementException.class);
+
+        fluentWait.until(ExpectedConditions.elementToBeSelected(check1));
+
         if(!checkbox1.isSelected()){
             checkbox1.click();
         }
@@ -88,7 +96,10 @@ public class ManejoWebElement {
         WebElement btnDownloads = driver.findElement(btnDownloadsLocator);
         WebElement btnPdf = driver.findElement(btnPdfLocator);
 
-        if(btnPdf.isDisplayed()){
+        //Espera Explicita
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(3000));
+
+        if(wait.until(ExpectedConditions.elementToBeSelected(btnPdf))){
             btnPdf.click();
         }
         if(btnDownloads.isDisplayed()){
@@ -113,6 +124,47 @@ public class ManejoWebElement {
         WebElement iframeTextElement = driver.findElement(iframeTextLocator);
         iframeTextElement.clear();
         iframeTextElement.sendKeys("Hola mundo");
+
+    }
+
+    @Test
+    void webTables(){
+
+        driver.navigate().to("https://the-internet.herokuapp.com/tables");
+
+        //Traer elementos de tabla
+        List<WebElement> webTable = driver.findElements(By.id("table1"));
+
+        //Cuantas Columnas tiene el webTable?
+        List<WebElement> columnas = webTable.get(0).findElement(By.tagName("thead")).findElements(By.tagName("th"));
+        for(WebElement th: columnas){
+            String text = th.getText();
+            if(text.contains("Due")){
+                th.click();;
+                th.click();
+                break;
+            }
+        }
+
+        //Cuantas filas
+        List<WebElement> filas = webTable.get(0).findElement(By.tagName("tbody")).findElements(By.tagName("tr"));
+        List<WebElement> mayorDeudor = filas.get(0).findElements(By.tagName("td"));
+        System.out.println("El cliente con mayor deuda es: ");
+        /*for(WebElement td : mayorDeudor){
+            System.out.println(td.getText());
+        }*/
+        for (int i=0;i< mayorDeudor.size();i++){
+            String text = columnas.get(i).getText();
+            if(text.contains("Last Name")){
+                System.out.println("Last Name: " + mayorDeudor.get(i).getText());
+            }
+            else if(text.contains("First Name")){
+                System.out.println("First Name: " + mayorDeudor.get(i).getText());
+            }
+            else if(text.contains("Due")){
+                System.out.println("Due: "+mayorDeudor.get(i).getText());
+            }
+        }
 
     }
 
