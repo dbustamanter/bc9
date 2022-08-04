@@ -166,6 +166,35 @@ public class ManejoWebElement {
             }
         }
 
+        System.out.println("*****************************************Orden Alfabetico************************");
+        for(WebElement th: columnas){
+            String text = th.getText();
+            if(text.contains("Last Name")){
+                th.click();
+                break;
+            }
+        }
+        for(int tr=0;tr<filas.size();tr++){
+            List<WebElement> fila = filas.get(tr).findElements(By.tagName("td"));
+            for (int i=0;i< fila.size();i++){
+                String text = columnas.get(i).getText();
+                if(text.contains("Last Name")){
+                    System.out.println("Last Name: " + fila.get(i).getText());
+                }
+                else if(text.contains("First Name")){
+                    System.out.println("First Name: " + fila.get(i).getText());
+                    System.out.println("_______________________________________");
+                    break;
+                }
+
+            }
+        }
+
+
+
+
+
+
     }
 
 
