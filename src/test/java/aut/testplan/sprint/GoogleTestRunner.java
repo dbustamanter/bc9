@@ -19,7 +19,11 @@ import java.time.Duration;
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = {"pretty", "io.qameta.allure.cucumber5jvm.AllureCucumber5Jvm"},
         glue = {"aut.testcreation.steps","aut.testplan.sprint"},
+<<<<<<< HEAD
         tags = {"@aut"},
+=======
+        tags = {"@bc9"},
+>>>>>>> 28ac8d8296af986dc41d9bbb04b8e71d0d491e86
         features = {"src/test/java/aut/testcreation/features"})
 @CommonsLog
 public class GoogleTestRunner {
